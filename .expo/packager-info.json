@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19002,
+  "devToolsPort": 19003,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 35345,
+  "packagerPid": 39564,
   "expoServerNgrokUrl": "https://tg-64v.anonymous.credo.exp.direct",
   "packagerNgrokUrl": "https://packager.tg-64v.anonymous.credo.exp.direct",
-  "ngrokPid": 35359
+  "ngrokPid": 39578
 }
