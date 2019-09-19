@@ -16,10 +16,7 @@ export default function Quote()
     )
 }
 
-
-
 const style = StyleSheet.create({
-
     container:
     {
         flex: 1,
@@ -27,7 +24,4 @@ const style = StyleSheet.create({
         justifyContent:'center',
         backgroundColor: "#F6F6F6"
     }
-
-
-
 })
