@@ -12,6 +12,6 @@ const TabNavigator = createBottomTabNavigator({
     Settings: Settings,
     About: About,
     Connect: Connect
-  });
+});
   
 export default createAppContainer(TabNavigator);
