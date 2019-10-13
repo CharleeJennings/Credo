@@ -8,7 +8,11 @@
     "eject": "expo eject"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@material-ui/core": "^4.4.2",
+=======
+    "@material-ui/core": "^4.4.3",
+>>>>>>> acdf9f8415daaec94ca388c5d71cf3e5273e74a6
     "expo": "^34.0.1",
     "react": "^16.8.3",
     "react-dom": "^16.9.0",
