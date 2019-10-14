@@ -1,28 +1,42 @@
 import React, {Component} from 'react'
-import { StyleSheet, View, Text, ListView } from 'react-native';
+import flamebase from '../firebase';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 
 export default class QuoteList extends Component {
-
+    componentWillMount = () =>{
+        const firestore = flamebase.firestore();
+        const quotesRef = firestore.collection('quotes');
+        const quoteData = [];
+        quotesRef.get().then(querySnapshot => {
+            querySnapshot.forEach(doc => { 
+                const {add_date, author, modify_date, name, quote} = doc.data();
+                this.state.sample = quote
+                quoteData.push({
+                    quoteName: name,
+                    quoteText: quote,
+                    quoteAuthor: author
+                });
+            });
+            this.setState({
+                quotes: quoteData,
+            }) 
+        });
+        // this.forceUpdate()
+    }
+    
     constructor(props) {
         super(props);
-        list = [
-            "\"Success doesn't necessarily come from breakthrough innovation but from flawless execution. A great strategy alone won't win a game or a battle; the win comes from basic blocking and tackling.\"",
-            "\"If in our daily life we can smile, if we can be peaceful and happy, not only we, but everyone will profit from it. This is the most basic kind of peace work.\"",
-            "\"Success is neither magical nor mysterious. Success is the natural consequence of consistently applying the basic fundamentals.\"",
-            "\"Was off the Remy, had a Papoose Had to hit my old town to duck the news Two four hour lockdown, we made no moves Now it's 4 a.m. and I'm back up poppin' with the crew I just landed in, Chase B mixes pop like Jamba Juice\"",
-            "\"I was hot as hell out in the heat (Yeah, yeah) Then a storm came in and saved my life Head up to the sky, down on my knees (Straight up) Out of nowhere, you came here to save the night In the nighttime (Woo, yeah)\""
-        ]
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            dataSource: ds.cloneWithRows(list),
+            quotes: [],
         };
     }
     
     render () {
         return (
-            <ListView
-                dataSource={this.state.dataSource}
-                renderRow={(data) => <View><Text style={style.item}>{data}</Text></View>}
+            <FlatList
+                data={this.state.quotes}
+                renderItem={({ item }) => <View><Text style={style.item}>{item.quoteName}</Text><Text style={style.item}>"{item.quoteText}"</Text><Text style={style.authorItem}>- {item.quoteAuthor}</Text></View>}
+                // keyExtractor={item => item.quoteKey}
             />
         )
     }
@@ -38,9 +52,19 @@ const style = StyleSheet.create({
     },
     item: {
         textAlign:'center',
+        padding: 2,
+        paddingLeft: 30,
+        paddingRight: 30,
+        fontSize: 14,
+        // minHeight: 110,
+        height: 'auto'
+    },
+    authorItem: {
+        textAlign:'center',
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,
+        marginBottom: 20,
         fontSize: 14,
         // minHeight: 110,
         height: 'auto'
