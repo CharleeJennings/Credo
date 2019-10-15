@@ -1,19 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import TabNavigator from './components/Navigation'
+import { StyleSheet, Platform, SafeAreaView, Text, View } from 'react-native';
+import StackNavigator from './components/Navigation'
 
 export default function App() {
   return (
- 
-      <TabNavigator/>
+    <StackNavigator/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'blue',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

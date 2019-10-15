@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import flamebase from '../firebase';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { YellowBox, StyleSheet, View, Text, FlatList } from 'react-native';
 
 export default class QuoteList extends Component {
     componentWillMount = () =>{
@@ -9,9 +9,10 @@ export default class QuoteList extends Component {
         const quoteData = [];
         quotesRef.get().then(querySnapshot => {
             querySnapshot.forEach(doc => { 
-                const {add_date, author, modify_date, name, quote} = doc.data();
+                const {add_date, author, category, modify_date, name, quote} = doc.data();
                 this.state.sample = quote
                 quoteData.push({
+                    quoteKey: doc.id,
                     quoteName: name,
                     quoteText: quote,
                     quoteAuthor: author
@@ -29,6 +30,7 @@ export default class QuoteList extends Component {
         this.state = {
             quotes: [],
         };
+        YellowBox.ignoreWarnings(['Setting a timer']);
     }
     
     render () {
@@ -36,7 +38,7 @@ export default class QuoteList extends Component {
             <FlatList
                 data={this.state.quotes}
                 renderItem={({ item }) => <View><Text style={style.item}>{item.quoteName}</Text><Text style={style.item}>"{item.quoteText}"</Text><Text style={style.authorItem}>- {item.quoteAuthor}</Text></View>}
-                // keyExtractor={item => item.quoteKey}
+                keyExtractor={item => item.quoteKey}
             />
         )
     }
