@@ -1,8 +1,12 @@
 import { createAppContainer } from 'react-navigation';  // Container for application
 
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from 'react-navigation-stack';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react'
 import Quote from './Quote'
+
+
 import Settings from './Settings'  
 import { Icon } from 'react-native-elements' /// Icon set check API for more information 
 
@@ -43,5 +47,13 @@ const TabNavigator = createBottomTabNavigator({
     });
   
 
-
-export default createAppContainer(TabNavigator);
+const StackNavigator = createStackNavigator({
+    AppAnchor: {
+        screen: TabNavigator,
+        navigationOptions: { title: 'Credo' },
+    }
+},{
+    headerLayoutPreset: 'center'
+});
+  
+export default createAppContainer(StackNavigator);

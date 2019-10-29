@@ -1,8 +1,10 @@
 {
   "hostType": "lan",
   "lanType": "ip",
-  "dev": false,
-  "minify": true,
-  "urlRandomness": "tg-64v",
+
+  "dev": true,
+  "minify": false,
+  "urlRandomness": "wx-cxc",
+
   "https": false
 }
