@@ -1,60 +1,51 @@
-import { createAppContainer } from 'react-navigation';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';  // Container for application
+
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react'
 import Quote from './Quote'
-import Settings from './Settings'
-import About from './About'
-import Connect from './Connect'
+
+
+import Settings from './Settings'  
+import { Icon } from 'react-native-elements' /// Icon set check API for more information 
+
+
+
+
+///////////////////
+/////// This is a functions to return the icon when focused on the tab and in general the icons 
+
+const getTabBarIcon = (navigation, focused, tintColor) => {
+    const { routeName } = navigation.state;
+    let iconName;
+    if (routeName === 'Home') {
+      iconName = `chat-bubble${focused ? '' : '-outline'}`;
+      // We want to add badges to home tab icon
+
+    } else if (routeName === 'Settings') {
+      iconName = `notifications${focused ? '' : '-none'}`;
+    }
+  
+    // You can return any component that you like here!
+    return <Icon name={iconName} size={25}  type='material' color={tintColor} />;
+  };
 
 const TabNavigator = createBottomTabNavigator({
-    Home: {
-        screen: Quote,
-        navigationOptions: {
-            tabBarLabel:"Home",
-            tabBarIcon: ({ tintColor }) => (
-            <Icon name="home" size={30} color="#d68a27" />
-            )
-        }
-    },
-    Settings: {
-        screen: Settings,
-        navigationOptions: {
-            tabBarLabel:"Settings",
-            tabBarIcon: ({ tintColor }) => (
-            <Icon name="settings-outline" size={30} color="#d68a27" />
-            )
-        }
-    },
-    About: {
-        screen: About,
-        navigationOptions: {
-            tabBarLabel:"About",
-            tabBarIcon: ({ tintColor }) => (
-            <Icon name="information" size={30} color="#d68a27" />
-            )
-        }
-    },
-    Connect: {
-        screen: Connect,
-        navigationOptions: {
-            tabBarLabel:"Connect",
-            tabBarIcon: ({ tintColor }) => (
-            <Icon name="account-group" size={30} color="#d68a27" />
-            )
-        }
-    }
-},{
-    tabBarOptions: {
-      activeTintColor: '#d68a27',
-      inactiveTintColor: 'gray',
-      style: {
-        backgroundColor: 'white',
-      }
-    },
-});
+    Home: Quote,
+    Settings: Settings,
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused, tintColor }) =>
+          getTabBarIcon(navigation, focused, tintColor),
+      }),
+      tabBarOptions: {
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+      },
+    });
+  
 
 const StackNavigator = createStackNavigator({
     AppAnchor: {

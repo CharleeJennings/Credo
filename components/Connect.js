@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 
+
 export default function Connect(){
     return(
         <View style ={style.container}>
@@ -20,3 +21,4 @@ const style = StyleSheet.create({
         backgroundColor: "#F6F6F6"
     }
 })
+
