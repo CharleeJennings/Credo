@@ -1,6 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import flamebase from '../firebase';
 import { YellowBox, StyleSheet, View, Text, FlatList } from 'react-native';
+import HTMLView from 'react-native-htmlview';
 
 export default class QuoteList extends Component {
     componentWillMount = () =>{
@@ -9,15 +10,16 @@ export default class QuoteList extends Component {
         const quoteData = [];
         quotesRef.get().then(querySnapshot => {
             querySnapshot.forEach(doc => { 
-                const {add_date, author, category, modify_date, name, quote} = doc.data();
+                const {add_date, author, category, modify_date, title, quote} = doc.data();
                 this.state.sample = quote
                 quoteData.push({
                     quoteKey: doc.id,
-                    quoteName: name,
+                    quoteTitle: title,
                     quoteText: quote,
                     quoteAuthor: author
                 });
             });
+            quoteData.sort((a, b) => (a.add_date < b.add_date) ? 1 : -1)
             this.setState({
                 quotes: quoteData,
             }) 
@@ -37,7 +39,15 @@ export default class QuoteList extends Component {
         return (
             <FlatList
                 data={this.state.quotes}
-                renderItem={({ item }) => <View><Text style={style.item}>{item.quoteName}</Text><Text style={style.item}>"{item.quoteText}"</Text><Text style={style.authorItem}>- {item.quoteAuthor}</Text></View>}
+                renderItem={({ item }) => 
+                <View>
+                    <Text style={style.item}>{item.quoteTitle}</Text>
+                    <HTMLView
+                        value={item.quoteText}
+                        stylesheet={style}
+                    />
+                    <Text style={style.authorItem}>- {item.quoteAuthor}</Text>
+                </View>}
                 keyExtractor={item => item.quoteKey}
             />
         )
@@ -70,5 +80,9 @@ const style = StyleSheet.create({
         fontSize: 14,
         // minHeight: 110,
         height: 'auto'
+    },
+    p: {
+        padding: 0,
+        margin: 0
     }
 })
