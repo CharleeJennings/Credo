@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
 import React from 'react'
 import Quote from './Quote'
-import Settings from './Settings'
+import NotificationSettings from './NotificationSettings'
 import {Icon} from 'react-native-elements'
 import Connect from "./Connect";
 import About from "./About"; /// Icon set check API for more information
@@ -31,7 +31,7 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 
 const TabNavigator = createBottomTabNavigator({
         Home: Quote,
-        Settings: Settings,
+        Settings: NotificationSettings,
         Connect: Connect,
         About: About
     },
