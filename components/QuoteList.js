@@ -82,6 +82,7 @@ const style = StyleSheet.create({
         height: 'auto'
     },
     p: {
+        textAlign:'center',
         padding: 0,
         margin: 0
     }
