@@ -6,7 +6,7 @@ export default function Connect(){
     return(
         <View style ={style.container}>
             <Text>
-                Blah blah we are awesome.
+                Connect with some awesome people here.
             </Text>
         </View>
     )
@@ -20,5 +20,4 @@ const style = StyleSheet.create({
         justifyContent:'center',
         backgroundColor: "#F6F6F6"
     }
-})
-
+});
