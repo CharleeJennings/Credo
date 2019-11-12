@@ -2,7 +2,7 @@ import { createAppContainer } from 'react-navigation';  // Container for applica
 
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import React from 'react'
 import Quote from './Quote'
 
