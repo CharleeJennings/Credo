@@ -50,7 +50,10 @@ const TabNavigator = createBottomTabNavigator({
 const StackNavigator = createStackNavigator({
     AppAnchor: {
         screen: TabNavigator,
-        navigationOptions: { title: 'Credo' },
+        navigationOptions: { 
+          title: 'Credo',
+          tintColor: '#000000'
+        },
     }
 },{
     headerLayoutPreset: 'center'

@@ -13,15 +13,9 @@ export default function Quote() {
 const style = StyleSheet.create({
     container:{
         flex: 1,
-        paddingTop: 22,
         alignItems: 'center',
         justifyContent:'center',
         backgroundColor: "#F6F6F6"
         // paddingTop: Platform.OS === 'android' ? 45 : 0
-    },
-    item: {
-        padding: 10,
-        fontSize: 18,
-        height: 144
     }
 })
